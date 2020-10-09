@@ -11,4 +11,4 @@ $config = isset($config) ? $config : [];
 use EmpireCli\App;
 
 $app = new App();
-$app->runCommand($argv, $config);
+$app->runCommand($config);

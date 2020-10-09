@@ -41,12 +41,12 @@ class PathFinder
     }
 
 
-    public function moveLeft(){
+    public function stepLeft(){
         $this->path = $this->path.self::LEFT;
         $this->yPosition = $this->yPosition - 1;
     }
 
-    public function moveRight(){
+    public function stepRight(){
         $this->path = $this->path.self::RIGHT;
         $this->yPosition = $this->yPosition + 1;
     }
@@ -61,14 +61,17 @@ class PathFinder
         $this->xPosition = $this->xPosition - 1;
     }
 
+
     public function clearPreviousMovingDirection(){
         $length = strlen($this->path);
+
         if($this->yDirection > 0) {
 
             $this->path = rtrim($this->path, self::RIGHT);
         }else{
             $this->path = rtrim($this->path, self::LEFT);
         }
+
         $newLength = strlen($this->path);
         $this->yPosition = $this->yPosition + ($length - $newLength) * $this->yDirection * (-1);
         $this->yDirection = $this->yDirection * (-1);
@@ -127,9 +130,9 @@ class PathFinder
          * Move Left or Right
          */
         if($this->yDirection < 0) {
-            $this->moveLeft();
+            $this->stepLeft();
         }else{
-            $this->moveRight();
+            $this->stepRight();
         }
     }
 
